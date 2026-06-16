@@ -1,0 +1,409 @@
+  <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Tanya Jawab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f1a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 24px 16px;
+    }
+
+    /* ── Wrapper ── */
+    .wrapper {
+      width: 100%;
+      max-width: 900px;
+      background: #1a1a2e;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(138, 43, 226, 0.25), 0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, #6a0dad 0%, #9b59b6 50%, #e056fd 100%);
+      padding: 36px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1rem, 3vw, 1.45rem);
+      color: #fff;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      position: relative;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .header h1 span {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border-radius: 6px;
+      padding: 2px 10px;
+      margin-top: 8px;
+      font-size: 0.8em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── Nav / Menu ── */
+    .nav {
+      background: #16213e;
+      padding: 12px 32px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav a {
+      color: #c084fc;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(192,132,252,0.25);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav a:hover, .nav a.active {
+      background: #6a0dad;
+      color: #fff;
+      border-color: #6a0dad;
+    }
+    .nav-label {
+      font-size: 0.75rem;
+      color: #555;
+      margin-right: 4px;
+      font-style: italic;
+    }
+
+    /* ── Content row ── */
+    .content-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      min-height: 340px;
+    }
+
+    /* ── Left Content ── */
+    .left-content {
+      background: #16213e;
+      padding: 28px 22px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .left-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.50rem;
+      color: #c084fc;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #6a0dad;
+      padding-bottom: 8px;
+    }
+    /*tulisan seperti tiktok wa dan ig*/
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      margin-bottom: 18px;
+    }
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .icon-wa   { background: #1db954; }
+    .icon-gm   { background: #ea4335; }
+    .icon-ig   { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .icon-tt   { background: #010101; border: 1px solid #333; }
+
+    .contact-info { flex: 1; min-width: 0; }
+    .contact-label {
+      font-size: 1rem;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .contact-value {
+      font-size: 1rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      word-break: break-all;
+    }
+    .contact-value a {
+      color: #c084fc;
+      text-decoration: none;
+    }
+    .contact-value a:hover { text-decoration: underline; }
+
+    /* ── Right Content ── */
+    .right-content {
+      background: #1a1a2e;
+      padding: 28px 28px;
+    }
+    .right-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.50rem;
+      color: #c084fc;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #6a0dad;
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+    .right-content p.sub {
+      font-size: 0.80rem;
+      color: #888;
+      margin-bottom: 18px;
+      margin-top: 10px;
+    }
+
+    /* Message box */
+    .msg-box {
+      background: #0f0f1a;
+      border: 1px solid rgba(106,13,173,0.4);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      box-shadow: inset 0 0 20px rgba(106,13,173,0.08);
+    }
+    .msg-prefix {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      color: #a78bfa;
+      font-weight: 600;
+      padding: 4px 0 2px 0;
+      user-select: none;
+      pointer-events: none;
+      line-height: 1.5;
+    }
+    #userMessage {
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      width: 100%;
+      min-height: 120px;
+      padding: 4px 0;
+    }
+    #userMessage::placeholder { color: #555; }
+
+    .char-count {
+      font-size: 0.7rem;
+      color: #555;
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    .send-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #6a0dad, #9b59b6);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .send-btn:hover { opacity: 0.88; }
+    .send-btn:active { transform: scale(0.98); }
+    .send-btn svg { flex-shrink: 0; }
+
+    .notice {
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: #666;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #0f0f1a;
+      padding: 18px 32px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer p {
+      font-size: 0.75rem;
+      color: #555;
+    }
+    .footer p span { color: #9b59b6; font-weight: 600; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .content-row { grid-template-columns: 1fr; }
+      .left-content { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .nav { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>
+      HALLO KAKAK / MBAK / ADIK<br>
+      SELAMAT DATANG DI WEBSITE YANG SAYA BIKIN,<br>
+       DISINI SAYA BUTUH KRITIK ATAU SARAN DARI KALIAN <br>
+       kritik/saran kalian berharga bagi saya 
+      <br><span>✨  setelah masuk di sini jangan keluar sebelum kirim kritik/saran ✨</span>
+    </h1>
+  </div>
+
+  <!-- MENU -->
+  <nav class="nav">
+    <span class="nav-label">Menu:</span>
+    <a href="#" class="active">Beranda</a>
+    <a href="#">Tanya Jawab</a>
+    <a href="#">Kontak</a>
+    <a href="#">Tentang</a>
+  </nav>
+
+  <!-- CONTENT ROW -->
+  <div class="content-row">
+
+    <!-- LEFT CONTENT -->
+    <aside class="left-content">
+      <h2>Kontak Saya<br> informasi media sosial </h2>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-wa">📱</div>
+        <div class="contact-info">
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">
+            <a href="https://wa.me/+62882005919462" target="_blank">+64882005919462</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-gm">✉️</div>
+        <div class="contact-info">
+          <div class="contact-label">Gmail</div>
+          <div class="contact-value">
+            <a href="mailto:vinovernando212010@gmail.com">vinovernando212010@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-ig">📸</div>
+        <div class="contact-info">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">
+            <a href="https://instagram.com/allvnn.___" target="_blank">@allvnn.__</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-tt">🎵</div>
+        <div class="contact-info">
+          <div class="contact-label">TikTok</div>
+          <div class="contact-value">
+            <a href="https://tiktok.com/@vortex_aev" target="_blank">@vortex_aev</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="right-content">
+      <h2>Kirim Pesan</h2>
+      <p class="sub">Tulis pesanmu di bawah, lalu klik kirim — pesan akan diteruskan langsung ke WhatsApp.</p>
+
+      <div class="msg-box">
+        <div class="msg-prefix">ini adalah pesan yang ingin saya sampaikan</div>
+        <textarea id="userMessage" placeholder=".............. (tulis pesan kamu di sini)" maxlength="500"></textarea>
+        <div class="char-count"><span id="charCount">0</span> / 500 karakter</div>
+      </div>
+
+      <button class="send-btn" onclick="kirimPesan()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Kirim ke WhatsApp
+      </button>
+      <p class="notice">Pesan akan dibuka di WhatsApp dengan nomor +64882005919462.<br>Pastikan kamu mengisi pesan sebelum mengirim.</p>
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 <span>Website Tanya Jawab</span> · Dibuat dengan ❤️︻デ═一  · Semua pertanyaan disambut baik!</p>
+  </footer>
+
+</div>
+
+<script>
+  const textarea = document.getElementById('userMessage');
+  const charCount = document.getElementById('charCount');
+
+  textarea.addEventListener('input', function() {
+    charCount.textContent = this.value.length;
+  });
+
+  function kirimPesan() {
+    const isi = textarea.value.trim();
+    if (!isi) {
+      alert('Hei! Jangan lupa isi pesanmu dulu ya 😊');
+      textarea.focus();
+      return;
+    }
+    const prefix = 'INI ADALAH PESAN YANG INGIN SAYA SAMPAIKAN ';
+    const fullMsg = prefix + isi;
+    const nomor = '+62882005919462';
+    const encoded = encodeURIComponent(fullMsg);
+    const url = `https://wa.me/${nomor}?text=${encoded}`;
+    window.open(url, '_blank');
+  }
+</script>
+</body>
+</html>
