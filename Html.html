@@ -1,0 +1,550 @@
+<DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Website Tanya Jawab</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<!--
+========================================================================
+  PETUNJUK SINGKAT (baca ini dulu sebelum edit!)
+========================================================================
+  Cari kata-kata "GANTI DI SINI" di file ini — semua bagian yang boleh
+  dan perlu kamu ubah ditandai dengan komentar seperti ini.
+
+  Yang paling sering diedit:
+  1. GAMBAR HEADER  -> cari "1. GAMBAR HEADER" di bagian <style> bawah
+  2. LOGO PERSEGI    -> cari "2. LOGO KAMU" di bagian <body>
+  3. WARNA WEBSITE   -> cari "3. WARNA & FONT" di bagian <style> bawah
+  4. TEKS JUDUL      -> cari "4. TEKS HEADER" di bagian <body>
+  5. KONTAK (WA/IG/dll) -> cari "5. KONTAK SAYA" di bagian <body>
+  6. NOMOR WA TUJUAN PESAN -> cari "6. NOMOR WA TUJUAN" di bagian <script>
+========================================================================
+-->
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ======================================================================
+     3. WARNA & FONT — GANTI DI SINI
+     Semua warna website diatur dari satu tempat ini. Tinggal ganti kode
+     warnanya (kode HEX, contoh: #f4a93c) dan seluruh website ikut berubah.
+     ====================================================================== */
+  :root {
+    --bg:        #0d1b1e;  /* warna latar belakang utama (teal gelap) */
+    --bg-soft:   #14282b;  /* warna latar kartu/panel */
+    --paper:     #f6f1e7;  /* warna krem, dipakai untuk teks terang & sticker logo */
+    --accent:    #f4a93c;  /* warna aksen utama (kuning marigold) */
+    --accent-2:  #ff6f59;  /* warna aksen kedua (coral), dipakai di tombol */
+    --muted:     #84a3a5;  /* abu kehijauan, dipakai untuk teks sekunder */
+    --line:      rgba(246,241,231,0.14); /* warna garis tipis pembatas */
+
+    /* ====================================================================
+       1. GAMBAR HEADER — GANTI DI SINI
+       Ganti tulisan di dalam url('....') dengan link gambar kamu.
+       Bisa berupa:
+         - link gambar dari internet, contoh: url('https://contoh.com/foto.jpg')
+         - nama file gambar yang kamu upload di folder yang sama,
+           contoh: url('header.jpg')
+       Kalau belum diganti, akan tampil warna polos sebagai cadangan.
+       ==================================================================== */
+    --header-img: url('GANTI-DENGAN-LINK-GAMBAR-HEADER.jpg');
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 28px 16px;
+  }
+
+  /* ── Wrapper ── */
+  .wrapper {
+    width: 100%;
+    max-width: 920px;
+    background: var(--bg-soft);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.45), 0 0 0 1px var(--line);
+  }
+
+  /* ── HEADER BANNER (gambar) ── */
+  .header-banner {
+    position: relative;
+    height: clamp(170px, 28vw, 240px);
+    background-color: var(--bg-soft);       /* tampil jika gambar belum diisi */
+    background-image: var(--header-img);    /* GANTI gambarnya di bagian :root di atas */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--accent);
+  }
+  .header-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,27,30,0.95) 5%, rgba(13,27,30,0.25) 55%, transparent 85%);
+  }
+  .header-text {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 16px;
+    z-index: 2;
+  }
+  .header-text .eyebrow {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    transform: rotate(-2deg);
+    margin-bottom: 10px;
+  }
+  .header-text h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    color: var(--paper);
+    line-height: 1.25;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.5);
+  }
+  .header-text p.tagline {
+    margin-top: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  /* ── LOGO (sticker persegi panjang, nempel di banner) ── */
+  .logo-sticker {
+    position: absolute;
+    left: 24px;
+    bottom: -26px;
+    z-index: 5;
+    background: var(--paper);
+    padding: 6px;
+    border-radius: 6px;
+    transform: rotate(-4deg);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.4);
+  }
+  .logo-sticker::before {
+    /* "selotip" kecil di atas logo, cuma dekorasi */
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(3deg);
+    width: 46px;
+    height: 16px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 2px;
+  }
+  .logo-sticker img {
+    display: block;
+    width: 130px;
+    height: 52px;          /* bentuk persegi panjang (lebar > tinggi) */
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  /* ── Nav / Menu ── */
+  .nav {
+    background: var(--bg-soft);
+    padding: 40px 28px 14px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-right: 6px;
+    font-style: italic;
+  }
+  .nav a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(244,169,60,0.35);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav a:hover, .nav a.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  /* ── Content row ──
+     Lebar kolom kontak diatur lewat angka pertama (310px) di bawah ini.
+     Mau lebih lebar/sempit lagi? Tinggal ubah angkanya saja. */
+  .content-row {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 0;
+  }
+
+  /* ── Left Content (kontak) — UKURAN DIPERBESAR DI SINI ── */
+  .left-content {
+    background: var(--bg-soft);
+    padding: 32px 26px 34px;
+    border-right: 1px solid var(--line);
+  }
+  .left-content h2, .right-content h2 {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed var(--line);
+  }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .contact-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.3rem;
+  }
+  .icon-wa { background: #1db954; }
+  .icon-gm { background: #ea4335; }
+  .icon-ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .icon-tt { background: #010101; border: 1px solid #333; }
+
+  .contact-info { flex: 1; min-width: 0; }
+  .contact-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .contact-value {
+    font-size: 0.96rem;
+    color: var(--paper);
+    font-weight: 500;
+    word-break: break-all;
+  }
+  .contact-value a { color: var(--accent); text-decoration: none; }
+  .contact-value a:hover { text-decoration: underline; }
+
+  /* ── Right Content (form pesan) ── */
+  .right-content {
+    background: var(--bg);
+    padding: 26px 28px 28px;
+  }
+  .right-content p.sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: -10px 0 18px;
+  }
+
+  .msg-box {
+    background: var(--bg-soft);
+    border: 1px dashed rgba(244,169,60,0.4);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Kolom Nama Pengirim ── */
+  .name-field {
+    margin-bottom: 14px;
+  }
+  .name-field label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  #userName {
+    width: 100%;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    outline: none;
+  }
+  #userName:focus { border-color: var(--accent); }
+  #userName::placeholder { color: #5b7375; }
+
+  .msg-prefix {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 700;
+    padding: 4px 0 2px 0;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1.5;
+  }
+  #userMessage {
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    color: var(--paper);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    width: 100%;
+    min-height: 120px;
+    padding: 4px 0;
+  }
+  #userMessage::placeholder { color: #5b7375; }
+
+  .char-count {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  .send-btn {
+    margin-top: 14px;
+    width: 100%;
+    padding: 13px;
+    background: var(--accent-2);
+    color: var(--bg);
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .send-btn:hover { opacity: 0.88; }
+  .send-btn:active { transform: scale(0.98); }
+  .send-btn svg { flex-shrink: 0; }
+
+  .notice {
+    margin-top: 10px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    background: var(--bg);
+    padding: 18px 32px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  .footer p { font-size: 0.75rem; color: var(--muted); }
+  .footer p span { color: var(--accent); font-weight: 600; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .content-row { grid-template-columns: 1fr; }
+    .left-content { border-right: none; border-bottom: 1px solid var(--line); }
+    .nav { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ====================================================================
+       HEADER (gambar + logo + judul)
+       ==================================================================== -->
+  <div class="header-banner">
+
+    <!-- ==================================================================
+         2. LOGO KAMU — GANTI DI SINI
+         Ganti "src" di bawah dengan link/nama file logo kamu.
+         Bentuk kotak sudah disetel persegi panjang (130 x 52 px) lewat
+         CSS class ".logo-sticker img" di atas — kalau mau ukurannya
+         beda, ubah angka "width" dan "height" di sana.
+         ================================================================== -->
+    <div class="logo-sticker">
+      <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='130' height='52'><rect width='100%25' height='100%25' fill='%230d1b1e'/><text x='50%25' y='50%25' font-family='monospace' font-size='12' fill='%23f6f1e7' text-anchor='middle' dominant-baseline='middle'>smkn1pwr</text></svg>" alt="Logo">
+    </div>
+
+    <!-- ==================================================================
+         4. TEKS HEADER — GANTI DI SINI
+         Ganti judul, label kecil di atas judul, dan tagline sesuai mau kamu.
+         ================================================================== -->
+    <div class="header-text">
+      <span class="eyebrow">Tanya Jawab Bebas</span>
+      <h1>Hallo kakak / mbak / adik!<br>Mau tanya apa aja, gas aja 🙌</h1>
+      <p class="tagline">Selamat datang di website tanya jawab saya ✨</p>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <nav class="nav">
+    <span class="nav-label">Menu:</span>
+    <a href="#" class="active">Beranda</a>
+    <a href="#">Tanya Jawab</a>
+    <a href="#">Kontak</a>
+    <a href="#">Tentang</a>
+  </nav>
+
+  <!-- CONTENT ROW -->
+  <div class="content-row">
+
+    <!-- ==================================================================
+         5. KONTAK SAYA — GANTI DI SINI
+         Edit nomor WhatsApp, email, username IG, dan username TikTok
+         di dalam tanda <a href="..."> dan teks di antara tag-nya.
+         ================================================================== -->
+    <aside class="left-content">
+      <h2>Kontak Saya</h2>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-wa">📱</div>
+        <div class="contact-info">
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">
+            <a href="https://wa.me/62882005919462" target="_blank">+62882005919462</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-gm">✉️</div>
+        <div class="contact-info">
+          <div class="contact-label">Gmail</div>
+          <div class="contact-value">
+            <a href="mailto:vinovernando212010@gmail.com">vinovernando212010@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-ig">📸</div>
+        <div class="contact-info">
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">
+            <a href="https://instagram.com/allvnn.___" target="_blank">@allvnn.__</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon icon-tt">🎵</div>
+        <div class="contact-info">
+          <div class="contact-label">TikTok</div>
+          <div class="contact-value">
+            <a href="https://tiktok.com/@vortex_aev" target="_blank">@vortex_aev</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT CONTENT -->
+    <main class="right-content">
+      <h2>Kirim Pesan</h2>
+      <p class="sub">Tulis pesanmu di bawah, lalu klik kirim — pesan akan diteruskan langsung ke WhatsApp.</p>
+
+      <div class="msg-box">
+        <!-- Kolom nama pengirim -->
+        <div class="name-field">
+          <label for="userName">Nama Kamu</label>
+          <input type="text" id="userName" placeholder="Tulis nama kamu di sini" maxlength="40">
+        </div>
+
+        <div class="msg-prefix">ini adalah pesan yang ingin saya sampaikan</div>
+        <textarea id="userMessage" placeholder=".............. (tulis pesan kamu di sini)" maxlength="500"></textarea>
+        <div class="char-count"><span id="charCount">0</span> / 500 karakter</div>
+      </div>
+
+      <button class="send-btn" onclick="kirimPesan()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Kirim ke WhatsApp
+      </button>
+      <p class="notice">Pesan akan dibuka di WhatsApp dengan nomor +64882005919462.<br>Pastikan kamu mengisi pesan sebelum mengirim.</p>
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 <span>Website Tanya Jawab</span> · Dibuat dengan ❤️ · Semua pertanyaan disambut baik!</p>
+  </footer>
+
+</div>
+
+<script>
+  const textarea = document.getElementById('userMessage');
+  const charCount = document.getElementById('charCount');
+
+  textarea.addEventListener('input', function() {
+    charCount.textContent = this.value.length;
+  });
+
+  function kirimPesan() {
+    const nama = document.getElementById('userName').value.trim();
+    const isi = textarea.value.trim();
+
+    if (!nama) {
+      alert('Eh, nama kamu belum diisi nih 😊');
+      document.getElementById('userName').focus();
+      return;
+    }
+    if (!isi) {
+      alert('Hei! Jangan lupa isi pesanmu dulu ya 😊');
+      textarea.focus();
+      return;
+    }
+    const prefix = 'ini adalah pesan yang ingin saya sampaikan ';
+    const fullMsg = `Nama: ${nama}\n${prefix}${isi}`;
+
+    // ====================================================================
+    // 6. NOMOR WA TUJUAN — GANTI DI SINI
+    // Tulis nomor WhatsApp tujuan TANPA tanda "+" dan TANPA angka "0" di
+    // depan. Contoh: nomor 0812-3456-7890 ditulis '6281234567890'.
+    // ====================================================================
+    const nomor = '62882005919462';
+
+    const encoded = encodeURIComponent(fullMsg);
+    const url = `https://wa.me/${nomor}?text=${encoded}`;
+    window.open(url, '_blank');
+  }
+</script>
+</body>
+</html>
